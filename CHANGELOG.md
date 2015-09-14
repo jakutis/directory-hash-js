@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 ### Fixed
 - removed stale documentation from README
+- fixed links in CHANGELOG
 
 ## [1.0.1] - 2015-09-15
 ### Added
@@ -19,5 +20,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - `npm run debug` script
 
-[unreleased]: https://github.com/jakutis/directory-tree-js/compare/v1.0.1...HEAD
-[1.0.1]: https://github.com/jakutis/directory-tree-js/compare/v1.0.0...v1.0.1
+[unreleased]: https://github.com/jakutis/directory-hash-js/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/jakutis/directory-hash-js/compare/v1.0.0...v1.0.1
