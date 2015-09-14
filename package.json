@@ -2,6 +2,7 @@
   "name": "directory-hash",
   "version": "1.0.0",
   "description": "Do stuff with file system directory trees most often involving hashes - integrity checking, merging, etc.",
+  "keywords": ["directory", "hash", "tree"],
   "main": "lib/index.js",
   "bin": "lib/index.js",
   "scripts": {
@@ -16,7 +17,8 @@
   "author": "Vytautas Jakutis <vytautas@jakut.is> (https://jakut.is)",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/jakutis/directory-hash-js/issues"
+    "url": "https://github.com/jakutis/directory-hash-js/issues",
+    "email": "vytautas@jakut.is"
   },
   "homepage": "https://github.com/jakutis/directory-hash-js#readme",
   "devDependencies": {
