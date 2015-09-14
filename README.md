@@ -3,6 +3,8 @@
 Do stuff with file system directory trees most often involving hashes - integrity checking, merging, etc.
 
 [![Build Status](https://travis-ci.org/jakutis/directory-hash-js.svg?branch=master)](https://travis-ci.org/jakutis/directory-hash-js)
+[![NPM](https://nodei.co/npm/directory-hash.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/directory-hash/)
+[![NPM](https://nodei.co/npm-dl/directory-hash.png)](https://nodei.co/npm/directory-hash/)
 
 ## Installation
 
