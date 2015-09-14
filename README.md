@@ -24,7 +24,3 @@ Do stuff with file system directory trees, most often involving hashes - integri
 ### Building
 
     npm run build
-
-### Debugging
-
-    npm run debug
