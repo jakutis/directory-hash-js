@@ -5,6 +5,9 @@
   "keywords": ["directory", "hash", "tree"],
   "main": "lib/index.js",
   "bin": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "test": "mocha --compilers js:babel/register",
     "debug": "babel-node-debug",
