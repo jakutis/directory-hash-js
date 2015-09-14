@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+### Added
+- EditorConfig support
+
 ### Fixed
 - removed stale documentation in README
 - fixed links in CHANGELOG
