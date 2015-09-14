@@ -1,0 +1,26 @@
+{
+  "name": "directory-hash",
+  "version": "1.0.0",
+  "description": "Do stuff with file system directory trees most often involving hashes - integrity checking, merging, etc.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel/register",
+    "debug": "babel-node-debug",
+    "build": "make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakutis/directory-hash-js.git"
+  },
+  "author": "Vytautas Jakutis <vytautas@jakut.is> (https://jakut.is)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jakutis/directory-hash-js/issues"
+  },
+  "homepage": "https://github.com/jakutis/directory-hash-js#readme",
+  "devDependencies": {
+    "babel": "5.8.23",
+    "babel-node-debug": "1.1.0",
+    "mocha": "2.3.2"
+  }
+}
