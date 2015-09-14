@@ -10,7 +10,6 @@
   ],
   "scripts": {
     "test": "mkdir -p test && mocha --compilers js:babel/register",
-    "debug": "babel-node-debug",
     "build": "make"
   },
   "repository": {
@@ -26,7 +25,6 @@
   "homepage": "https://github.com/jakutis/directory-hash-js#readme",
   "devDependencies": {
     "babel": "5.8.23",
-    "babel-node-debug": "1.1.0",
     "mocha": "2.3.2"
   }
 }
