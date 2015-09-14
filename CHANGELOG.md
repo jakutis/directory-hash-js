@@ -4,19 +4,24 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+
 ### Fixed
-- removed stale documentation from README
+- removed stale documentation in README
 - fixed links in CHANGELOG
+- fixed Markdown syntax errors in CHANGELOG
 
 ## [1.0.1] - 2015-09-15
+
 ### Added
 - Travis support
 - NPM status images
 - CLI
 - LICENSE, CHANGELOG and AUTHORS files
+
 ### Fixed
 - `npm test` while /test folder is empty
 - include /lib folder in published npm package
+
 ### Removed
 - `npm run debug` script
 
