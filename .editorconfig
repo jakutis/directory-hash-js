@@ -10,4 +10,4 @@ indent_style = tab
 [{*.js,package.json,.travis.yml}]
 charset = utf-8
 indent_style = space
-indent_size = 4
+indent_size = 2
