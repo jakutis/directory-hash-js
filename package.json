@@ -9,7 +9,7 @@
     "lib"
   ],
   "scripts": {
-    "test": "mocha --compilers js:babel/register",
+    "test": "mkdir -p test && mocha --compilers js:babel/register",
     "debug": "babel-node-debug",
     "build": "make"
   },
