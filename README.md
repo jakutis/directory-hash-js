@@ -13,7 +13,7 @@ Do stuff with file system directory trees most often involving hashes - integrit
 
 ## Usage
 
-TODO
+    directory-hash --help
 
 ## Development 
 

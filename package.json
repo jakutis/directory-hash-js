@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Do stuff with file system directory trees most often involving hashes - integrity checking, merging, etc.",
   "main": "lib/index.js",
+  "bin": "lib/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register",
     "debug": "babel-node-debug",
