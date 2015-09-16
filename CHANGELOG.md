@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+### Added
+- ECMAScript source code linting
+
 ## [1.0.2] - 2015-09-16
 
 ### Added
