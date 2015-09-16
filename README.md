@@ -17,10 +17,4 @@ Do stuff with file system directory trees, most often involving hashes - integri
 
 ## Development 
 
-### Testing
-
-    npm test
-
-### Building
-
-    npm run build
+1. Run `npm test` on each change in `src` or `test` directories

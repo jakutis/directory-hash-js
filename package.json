@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "test": "make && mkdir -p test && mocha --async-only --compilers js:babel/register",
-    "build": "make"
+    "prepublish": "npm test"
   },
   "repository": {
     "type": "git",

@@ -8,6 +8,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - ECMAScript source code linting
 
+### Changed
+- replace the manual `build` script with an automatic `prepublish` script
+
 ## [1.0.2] - 2015-09-16
 
 ### Added
