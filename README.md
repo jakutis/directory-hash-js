@@ -17,4 +17,10 @@ Do stuff with file system directory trees, most often involving hashes - integri
 
 ## Development 
 
-1. Run `npm test` on each change in `src` or `test` directories
+1. Run `npm test` on each change in `src` or `test` directories.
+
+## Releasing
+
+1. Bump version in `CHANGELOG` and `package.json` files.
+2. Run `npm publish`.
+3. Run `git tag v1.2.3`.

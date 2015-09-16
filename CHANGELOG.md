@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - ECMAScript source code linting
+- Release process documentation
 
 ### Changed
 - replace the manual `build` script with an automatic `prepublish` script
@@ -17,9 +18,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - EditorConfig support
 
 ### Fixed
-- removed stale documentation in README
-- fixed links in CHANGELOG
-- fixed Markdown syntax errors in CHANGELOG
+- removed stale documentation in `README`
+- fixed links in `CHANGELOG`
+- fixed Markdown syntax errors in `CHANGELOG`
 - invoking of the CLI
 
 ## [1.0.1] - 2015-09-15
@@ -28,11 +29,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Travis support
 - NPM status images
 - CLI
-- LICENSE, CHANGELOG and AUTHORS files
+- `LICENSE`, `CHANGELOG` and `AUTHORS` files
 
 ### Fixed
-- `npm test` while /test folder is empty
-- include /lib folder in published npm package
+- `npm test` while `/test` folder is empty
+- include `/lib` folder in published NPM package
 
 ### Removed
 - `npm run debug` script
