@@ -1,0 +1,3 @@
+#!/usr/bin/env node
+
+require(__dirname + '/..').CLI(process.cwd(), process.argv, process.stdin, process.stdout);

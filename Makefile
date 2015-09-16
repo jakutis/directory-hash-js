@@ -13,12 +13,7 @@ testfoobar/%.js: test/%.js
 
 lib: $(LIB)
 
-lib/index.js: src/index.js
-	mkdir -p $(@D)
-	eslint --config $(ROOT)/.eslintrc  $<
-	babel $< -o $@
-	chmod +x lib/index.js
-
 lib/%.js: src/%.js
+	mkdir -p $(@D)
 	eslint --config $(ROOT)/.eslintrc  $<
 	babel $< -o $@

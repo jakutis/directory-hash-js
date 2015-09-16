@@ -8,7 +8,10 @@
     "tree"
   ],
   "main": "lib/index.js",
-  "bin": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "bin": "bin"
+  },
   "files": [
     "lib"
   ],
@@ -32,5 +35,8 @@
     "babel-eslint": "4.1.2",
     "eslint": "1.4.3",
     "mocha": "2.3.2"
+  },
+  "dependencies": {
+    "bluebird": "2.10.0"
   }
 }
