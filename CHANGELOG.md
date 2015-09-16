@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [1.0.3] - 2015-09-16
+
 ### Added
 - ECMAScript source code linting
 - Release process documentation
@@ -38,6 +40,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - `npm run debug` script
 
-[unreleased]: https://github.com/jakutis/directory-hash-js/compare/v1.0.2...HEAD
+[unreleased]: https://github.com/jakutis/directory-hash-js/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/jakutis/directory-hash-js/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/jakutis/directory-hash-js/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/jakutis/directory-hash-js/compare/v1.0.0...v1.0.1

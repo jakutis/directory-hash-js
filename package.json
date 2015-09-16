@@ -1,6 +1,6 @@
 {
   "name": "directory-hash",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Do stuff with file system directory trees most often involving hashes - integrity checking, merging, etc.",
   "keywords": [
     "directory",
