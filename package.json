@@ -13,7 +13,8 @@
     "bin": "bin"
   },
   "files": [
-    "lib"
+    "lib",
+    "bin"
   ],
   "scripts": {
     "test": "make && mkdir -p test && mocha --async-only --compilers js:babel/register",

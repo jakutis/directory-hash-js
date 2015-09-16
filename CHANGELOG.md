@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+### Fixed
+- installation failure, which was caused by bin folder exclusion from package
+
 ## [1.0.3] - 2015-09-16
 
 ### Added
