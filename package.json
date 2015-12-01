@@ -7,18 +7,18 @@
     "hash",
     "tree"
   ],
-  "main": "lib/index.js",
-  "directories": {
-    "lib": "lib",
-    "bin": "bin"
-  },
+  "bin": "main-lib.js",
+  "main": "main-lib.js",
   "files": [
     "lib",
-    "bin"
+    "main-lib.js",
+    "AUTHORS",
+    "LICENSE",
+    "CHANGELOG.markdown",
+    "README.markdown"
   ],
   "scripts": {
-    "test": "make && mkdir -p test && mocha --async-only --compilers js:babel/register",
-    "prepublish": "npm test"
+    "test": "jshint --config test/.jshintrc --reporter unix test && jscs --config .jscsrc --es3 --no-colors --reporter unix test && jshint --config lib/.jshintrc --reporter unix lib && jscs --config .jscsrc --es3 --no-colors --reporter unix lib && mocha --async-only --no-colors --reporter spec --sort --bail --ui bdd --check-leaks --full-trace --inline-diffs --no-exit --recursive --require main-test.js"
   },
   "repository": {
     "type": "git",
@@ -31,13 +31,18 @@
     "email": "vytautas@jakut.is"
   },
   "homepage": "https://github.com/jakutis/directory-hash-js#readme",
-  "devDependencies": {
-    "babel": "5.8.23",
-    "babel-eslint": "4.1.2",
-    "eslint": "1.4.3",
-    "mocha": "2.3.2"
-  },
   "dependencies": {
-    "bluebird": "2.10.0"
+    "bluebird": "latest",
+    "lodash": "latest"
+  },
+  "devDependencies": {
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "jscs": "latest",
+    "jshint": "latest",
+    "mocha": "latest",
+    "sinon": "latest",
+    "sinon-as-promised": "latest",
+    "sinon-chai": "latest"
   }
 }

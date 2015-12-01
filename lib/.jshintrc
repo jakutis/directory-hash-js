@@ -1,0 +1,30 @@
+{
+  "strict": "global",
+  "globals": {
+    "_": false,
+    "Promise": false,
+    "Map": false,
+    "Proxy": false,
+    "Reflect": false,
+    "Set": false,
+    "Symbol": false,
+    "WeakMap": false,
+    "WeakSet": false,
+    "JSON": true,
+    "Buffer": true,
+    "__dirname": false,
+    "__filename": false,
+    "clearImmediate": true,
+    "clearInterval": true,
+    "clearTimeout": true,
+    "console": true,
+    "exports": true,
+    "global": false,
+    "module": false,
+    "process": true,
+    "require": false,
+    "setTimeout": true,
+    "setInterval": true,
+    "setImmediate": true
+  }
+}
