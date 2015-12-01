@@ -25,7 +25,7 @@
     "url": "git+https://github.com/jakutis/directory-hash-js.git"
   },
   "author": "Vytautas Jakutis <vytautas@jakut.is> (https://jakut.is)",
-  "license": "GPL-3.0",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/jakutis/directory-hash-js/issues",
     "email": "vytautas@jakut.is"
