@@ -4,6 +4,27 @@ var through2 = require('through2');
 var lib = require('..');
 
 describe('pumpAndConcat', function() {
+  it('rejects if pump results in an error', function() {
+    return Promise
+      .bind({})
+      .then(function setup() {
+        this.boundary = new lib.Boundary();
+        this.error = new Error();
+
+        // Fake contract A.
+        stub(this.boundary, 'pump', function(_, __, reject) {
+          setTimeout(function() {
+            reject(this.error);
+          }.bind(this));
+        }.bind(this));
+      })
+      .then(function exerciseAndVerify() {
+        var promise = lib.pumpAndConcat(this.boundary, []);
+
+        // Check collaboration A.
+        return expect(promise).to.eventually.be.rejectedWith(this.error);
+      });
+  });
   it('works', function() {
     return Promise
       .bind({})
