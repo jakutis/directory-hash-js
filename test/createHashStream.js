@@ -19,6 +19,7 @@ describe('createHashStream', function() {
         this.boundary = new lib.Boundary();
         var createHash = this.boundary.createHash;
         this.createHashSpy = stub(this.boundary, 'createHash', function() {
+          // Execute contract A.
           return createHash.call(this, 'sha512');
         });
         this.hashStream = lib.createHashStream(this.boundary, 'abcdef');
@@ -28,6 +29,7 @@ describe('createHashStream', function() {
       })
       .then(function verify(result) {
         expect(result.equals(this.hash)).to.equal(true);
+        // Check collaboration A.
         expect(this.createHashSpy).to.have.been.calledWithExactly('abcdef');
       });
   });
