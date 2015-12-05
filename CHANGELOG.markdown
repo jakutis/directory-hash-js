@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+### Added
+- node-5 support
+- very basic hash command implementation
+- watch script
+
+### Changed
+- ES6 to ES5
+- bin/main design
+- testing infrastructure
+- LICENSE from GPL-3.0 to ISC
+- README structure
+
 ## [1.0.4] - 2015-09-16
 
 ### Fixed
