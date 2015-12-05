@@ -5,7 +5,28 @@ var crypto = require('crypto');
 var through2 = require('through2');
 
 describe('createHashStream', function() {
-  it('works', function() {
+  it('re-throws the error from boundary.createHash', function() {
+    return Promise
+      .bind({
+        boundary: new lib.Boundary(),
+        error: new Error(),
+      })
+      .then(function setup() {
+        var self = this;
+
+        // Fake contract A.
+        this.createHashSpy = stub(this.boundary, 'createHash', function() {
+          throw self.error;
+        });
+      })
+      .then(function exerciseAndVerify() {
+        var self = this;
+        expect(function() {
+          lib.createHashStream(self.boundary);
+        }).to.throw(this.error);
+      });
+  });
+  it('returns a stream that transforms using boundary.createHash', function() {
     return Promise
       .bind({
         buffer: new Buffer(str('buffer')),
