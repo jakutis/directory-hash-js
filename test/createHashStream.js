@@ -8,21 +8,21 @@ describe('createHashStream', function() {
   it('works', function() {
     return Promise
       .bind({
-        buffer: new Buffer('beep' + Math.random()),
+        buffer: new Buffer(str('buffer')),
         realAlgorithm: 'sha512',
-        algorithm: 'abc' + Math.random(),
+        algorithm: str('algorithm'),
+        boundary: new lib.Boundary(),
+        stream: through2(),
       })
       .then(function setup() {
         var self = this;
 
-        this.stream = through2();
         this.stream.end(this.buffer);
 
         var hash = crypto.createHash(this.realAlgorithm);
         hash.update(this.buffer);
         this.hash = hash.digest();
 
-        this.boundary = new lib.Boundary();
         var createHash = this.boundary.createHash;
         this.createHashSpy = stub(this.boundary, 'createHash', function() {
           // Execute contract A.

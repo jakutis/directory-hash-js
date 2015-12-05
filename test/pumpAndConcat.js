@@ -6,11 +6,11 @@ var lib = require('..');
 describe('pumpAndConcat', function() {
   it('rejects if pump results in an error', function() {
     return Promise
-      .bind({})
+      .bind({
+        boundary: new lib.Boundary(),
+        error: new Error(),
+      })
       .then(function setup() {
-        this.boundary = new lib.Boundary();
-        this.error = new Error();
-
         // Fake contract A.
         stub(this.boundary, 'pump', function(_, __, reject) {
           setTimeout(function() {
@@ -27,21 +27,23 @@ describe('pumpAndConcat', function() {
   });
   it('pumps streams and resolves with a concatenated buffer', function() {
     return Promise
-      .bind({})
+      .bind({
+        boundary: new lib.Boundary(),
+        buffer: new Buffer(str('buffer'), 'utf8'),
+        streams: str('streams'),
+      })
       .then(function setup() {
-        this.buffer = new Buffer('beepboop' + Math.random(), 'utf8');
-        this.boundary = new lib.Boundary();
+        var self = this;
 
-        var pump = this.boundary.pump;
         // Fake contract A.
-        this.streams = {};
+        var pump = this.boundary.pump;
         this.pumpSpy = stub(this.boundary, 'pump', function(streams, _, __) {
-          this.actualStreams = streams;
+          self.actualStreams = streams;
 
           var stream = through2();
-          stream.end(this.buffer);
+          stream.end(self.buffer);
           pump([stream], _, __);
-        }.bind(this));
+        });
       })
       .then(function exercise() {
         return lib.pumpAndConcat(this.boundary, this.streams);

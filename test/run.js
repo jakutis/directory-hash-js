@@ -7,40 +7,42 @@ var through2 = require('through2');
 describe('run', function() {
   it('hashes a single file in directory', function() {
     return Promise
-      .bind({})
+      .bind({
+        boundary: new lib.Boundary(),
+        directory: '/' + str('directory'),
+        buffer: new Buffer(str('buffer'), 'utf8'),
+        filename: str('filename'),
+      })
       .then(function setup() {
-        this.directory = '/directory' + Math.random();
+        var self = this;
 
-        this.boundary = new lib.Boundary();
         // Fake contract C.
         this.boundary.argv = [this.directory];
         // Fake contract D.
         this.boundary.stdout = through2();
 
-        var buffer = new Buffer('abc' + Math.random(), 'utf8');
         var fs = this.boundary.fs;
 
-        this.filename = 'def' + Math.random();
         this.readDirectorySpy = stub(fs, 'readDirectory', function() {
           // Fake contract A.
-          return Promise.resolve(['.', '..', this.filename]);
-        }.bind(this));
+          return Promise.resolve(['.', '..', self.filename]);
+        });
 
         this.createReadStreamSpy = stub(fs, 'createReadStream', function() {
           // Fake contract B.
           var stream = through2();
-          stream.end(buffer);
+          stream.end(self.buffer);
           return stream;
         });
 
         var shasum = crypto.createHash('sha512');
-        shasum.update(buffer);
+        shasum.update(self.buffer);
         this.hash = shasum.digest('hex');
       })
       .then(function exercise() {
         return lib.run(this.boundary);
       })
-      .then(function() {
+      .then(function verify() {
         return lib.pumpAndConcat(this.boundary, [this.boundary.stdout]);
       })
       .then(function verify(output) {
