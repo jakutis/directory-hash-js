@@ -9,13 +9,13 @@ describe('createHashStream', function() {
     return Promise
       .bind({
         boundary: new lib.Boundary(),
-        error: new Error(),
+        error: str('error'),
       })
       .then(function setup() {
         var self = this;
 
         // Fake contract A.
-        this.createHashSpy = stub(this.boundary, 'createHash', function() {
+        stub(this.boundary, 'createHash', function() {
           throw self.error;
         });
       })

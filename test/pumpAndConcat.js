@@ -8,15 +8,17 @@ describe('pumpAndConcat', function() {
     return Promise
       .bind({
         boundary: new lib.Boundary(),
-        error: new Error(),
+        error: str('error'),
       })
       .then(function setup() {
+        var self = this;
+
         // Fake contract A.
         stub(this.boundary, 'pump', function(_, __, reject) {
           setTimeout(function() {
-            reject(this.error);
-          }.bind(this));
-        }.bind(this));
+            reject(self.error);
+          });
+        });
       })
       .then(function exerciseAndVerify() {
         var promise = lib.pumpAndConcat(this.boundary, []);
