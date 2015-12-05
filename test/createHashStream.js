@@ -30,6 +30,7 @@ describe('createHashStream', function() {
       .then(function verify(result) {
         expect(result.toString('hex')).to.equal(this.hash.toString('hex'));
         // Check collaboration A.
+        expect(this.createHashSpy).to.have.been.calledOnce;
         expect(this.createHashSpy).to.have.been.calledWithExactly('abcdef');
       });
   });

@@ -48,10 +48,12 @@ describe('run', function() {
           .to.equal(this.hash + ' /def\n');
 
         // Check collaborations B and C.
+        expect(this.createReadStreamSpy).to.have.been.calledOnce;
         expect(this.createReadStreamSpy)
           .to.have.been.calledWithExactly(this.directory + '/def');
 
         // Check collaborations A and C.
+        expect(this.readDirectorySpy).to.have.been.calledOnce;
         expect(this.readDirectorySpy)
           .to.have.been.calledWithExactly(this.directory);
       });

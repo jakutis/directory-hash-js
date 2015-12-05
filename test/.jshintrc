@@ -1,5 +1,6 @@
 {
   "strict": "global",
+  "expr": true,
   "globals": {
     "expect": true,
     "spy": true,
