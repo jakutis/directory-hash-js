@@ -25,7 +25,7 @@ describe('createHashStream', function() {
         this.hashStream = lib.createHashStream(this.boundary, 'abcdef');
       })
       .then(function exercise() {
-        return lib.pumpAndConcat(this.stream, this.hashStream);
+        return lib.pumpAndConcat(this.boundary, [this.stream, this.hashStream]);
       })
       .then(function verify(result) {
         expect(result.toString('hex')).to.equal(this.hash.toString('hex'));

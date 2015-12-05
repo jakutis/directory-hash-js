@@ -40,7 +40,7 @@ describe('run', function() {
         return lib.run(this.boundary);
       })
       .then(function() {
-        return lib.pumpAndConcat(this.boundary.stdout);
+        return lib.pumpAndConcat(this.boundary, [this.boundary.stdout]);
       })
       .then(function verify(output) {
         // Check collaboration D.
