@@ -6,7 +6,7 @@
     "spy": true,
     "stub": true,
     "mock": true,
-    "str": true,
+    "id": true,
     "describe": true,
     "it": true,
     "before": true,

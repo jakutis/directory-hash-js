@@ -8,7 +8,7 @@ describe('pumpAndConcat', function() {
     return Promise
       .bind({
         boundary: new lib.Boundary(),
-        error: str('error'),
+        error: id('error'),
       })
       .then(function setup() {
         var self = this;
@@ -31,8 +31,8 @@ describe('pumpAndConcat', function() {
     return Promise
       .bind({
         boundary: new lib.Boundary(),
-        buffer: new Buffer(str('buffer'), 'utf8'),
-        streams: str('streams'),
+        buffer: new Buffer(id('buffer'), 'utf8'),
+        streams: id('streams'),
       })
       .then(function setup() {
         var self = this;

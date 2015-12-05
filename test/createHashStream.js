@@ -9,7 +9,7 @@ describe('createHashStream', function() {
     return Promise
       .bind({
         boundary: new lib.Boundary(),
-        error: str('error'),
+        error: id('error'),
       })
       .then(function setup() {
         var self = this;
@@ -29,9 +29,9 @@ describe('createHashStream', function() {
   it('returns a stream that transforms using boundary.createHash', function() {
     return Promise
       .bind({
-        buffer: new Buffer(str('buffer')),
+        buffer: new Buffer(id('buffer')),
         realAlgorithm: 'sha512',
-        algorithm: str('algorithm'),
+        algorithm: id('algorithm'),
         boundary: new lib.Boundary(),
         stream: through2(),
       })

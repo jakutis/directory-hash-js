@@ -9,9 +9,9 @@ describe('run', function() {
     return Promise
       .bind({
         boundary: new lib.Boundary(),
-        directory: '/' + str('directory'),
-        buffer: new Buffer(str('buffer'), 'utf8'),
-        filename: str('filename'),
+        directory: '/' + id('directory'),
+        buffer: new Buffer(id('buffer'), 'utf8'),
+        filename: id('filename'),
       })
       .then(function setup() {
         var self = this;
