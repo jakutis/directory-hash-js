@@ -18,7 +18,8 @@
     "README.markdown"
   ],
   "scripts": {
-    "test": "jshint --config test/.jshintrc --reporter unix test && jscs --config .jscsrc --es3 --no-colors --reporter unix test && jshint --config lib/.jshintrc --reporter unix lib && jscs --config .jscsrc --es3 --no-colors --reporter unix lib && mocha --async-only --no-colors --reporter spec --sort --bail --ui bdd --check-leaks --full-trace --inline-diffs --no-exit --recursive --require main-test.js"
+    "test": "tmux set-window-option -t test window-status-style 'bg=yellow' && jshint --config test/.jshintrc --reporter unix test && jscs --config .jscsrc --es3 --no-colors --reporter unix test && jshint --config lib/.jshintrc --reporter unix lib && jscs --config .jscsrc --es3 --no-colors --reporter unix lib && mocha --async-only --no-colors --reporter spec --sort --bail --ui bdd --check-leaks --full-trace --inline-diffs --no-exit --recursive --require main-test.js && tmux set-window-option -t test window-status-style 'bg=green';E=$?;[ \"$E\" != \"0\" ] && tmux set-window-option -t test window-status-style 'bg=red';exit $E",
+    "watch": "watchy --no-color --watch lib,test -- npm test"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "mocha": "latest",
     "sinon": "latest",
     "sinon-as-promised": "latest",
-    "sinon-chai": "latest"
+    "sinon-chai": "latest",
+    "watchy": "latest"
   }
 }
