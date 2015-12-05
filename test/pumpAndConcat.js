@@ -16,7 +16,7 @@ describe('pumpAndConcat', function() {
         return lib.pumpAndConcat(this.stream);
       })
       .then(function verify(result) {
-        expect(result.equals(this.buffer)).to.equal(true);
+        expect(result.toString('hex')).to.equal(this.buffer.toString('hex'));
       });
   });
 });

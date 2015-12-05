@@ -28,7 +28,7 @@ describe('createHashStream', function() {
         return lib.pumpAndConcat(this.stream, this.hashStream);
       })
       .then(function verify(result) {
-        expect(result.equals(this.hash)).to.equal(true);
+        expect(result.toString('hex')).to.equal(this.hash.toString('hex'));
         // Check collaboration A.
         expect(this.createHashSpy).to.have.been.calledWithExactly('abcdef');
       });
