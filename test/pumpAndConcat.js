@@ -25,7 +25,7 @@ describe('pumpAndConcat', function() {
         return expect(promise).to.eventually.be.rejectedWith(this.error);
       });
   });
-  it('works', function() {
+  it('pumps streams and resolves with a concatenated buffer', function() {
     return Promise
       .bind({})
       .then(function setup() {
@@ -40,7 +40,7 @@ describe('pumpAndConcat', function() {
 
           var stream = through2();
           stream.end(this.buffer);
-          return pump([stream], _, __);
+          pump([stream], _, __);
         }.bind(this));
       })
       .then(function exercise() {
