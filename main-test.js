@@ -18,3 +18,6 @@ global.expect = chai.expect;
 global.spy = sinon.spy;
 global.stub = sinon.stub;
 global.mock = sinon.mock;
+global.str = function (name) {
+  return 'str[' + name + ',' + Math.random() + ']';
+};
