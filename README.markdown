@@ -1,4 +1,4 @@
-# directory-hash
+# directory-hash [![Build Status](https://travis-ci.org/jakutis/directory-hash-js.svg?branch=master)](https://travis-ci.org/jakutis/directory-hash-js)
 
 Do stuff with file system directory trees, most often involving hashes - integrity checking, merging, etc.
 
