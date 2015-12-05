@@ -9,7 +9,7 @@ describe('run', function() {
     return Promise
       .bind({})
       .then(function setup() {
-        this.directory = '/directory';
+        this.directory = '/directory' + Math.random();
 
         this.boundary = new lib.Boundary();
         // Fake contract C.
@@ -17,13 +17,14 @@ describe('run', function() {
         // Fake contract D.
         this.boundary.stdout = through2();
 
-        var buffer = new Buffer('abc\n', 'utf8');
+        var buffer = new Buffer('abc' + Math.random(), 'utf8');
         var fs = this.boundary.fs;
 
+        this.filename = 'def' + Math.random();
         this.readDirectorySpy = stub(fs, 'readDirectory', function() {
           // Fake contract A.
-          return Promise.resolve(['.', '..', 'def']);
-        });
+          return Promise.resolve(['.', '..', this.filename]);
+        }.bind(this));
 
         this.createReadStreamSpy = stub(fs, 'createReadStream', function() {
           // Fake contract B.
@@ -45,12 +46,12 @@ describe('run', function() {
       .then(function verify(output) {
         // Check collaboration D.
         expect(output.toString('utf8'))
-          .to.equal(this.hash + ' /def\n');
+          .to.equal(this.hash + ' /' + this.filename + '\n');
 
         // Check collaborations B and C.
         expect(this.createReadStreamSpy).to.have.been.calledOnce;
         expect(this.createReadStreamSpy)
-          .to.have.been.calledWithExactly(this.directory + '/def');
+          .to.have.been.calledWithExactly(this.directory + '/' + this.filename);
 
         // Check collaborations A and C.
         expect(this.readDirectorySpy).to.have.been.calledOnce;

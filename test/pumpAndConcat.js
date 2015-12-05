@@ -29,7 +29,7 @@ describe('pumpAndConcat', function() {
     return Promise
       .bind({})
       .then(function setup() {
-        this.buffer = new Buffer('beepboop\n', 'utf8');
+        this.buffer = new Buffer('beepboop' + Math.random(), 'utf8');
         this.boundary = new lib.Boundary();
 
         var pump = this.boundary.pump;
