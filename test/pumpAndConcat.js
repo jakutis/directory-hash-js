@@ -16,8 +16,8 @@ describe('pumpAndConcat', function() {
       });
     });
 
-    var promise = lib.pumpAndConcat(boundary, []);
-    return expect(promise).to.eventually.be.rejectedWith(error);
+    return expect(lib.pumpAndConcat(boundary, []))
+      .to.eventually.be.rejectedWith(error);
   });
 
   it('pumps streams and resolves with a concatenated buffer', function() {
@@ -41,9 +41,8 @@ describe('pumpAndConcat', function() {
 
     var promise = lib.pumpAndConcat(boundary, streams);
     return promise.then(function(result) {
-      var expectedBuffer = buffer.toString('hex');
-      var actualBuffer = result.toString('hex');
-      expect(actualBuffer).to.equal(expectedBuffer);
+      expect(result.toString('hex'))
+        .to.equal(buffer.toString('hex'));
     });
   });
 });

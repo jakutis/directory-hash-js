@@ -21,11 +21,9 @@ describe('run', function() {
         return stream;
       });
     }, function() {
-      var path = directory + '/' + filename;
-
       expect(this.createReadStreamSpy).to.have.been.calledOnce;
       expect(this.createReadStreamSpy)
-        .to.have.been.calledWithExactly(path);
+        .to.have.been.calledWithExactly(directory + '/' + filename);
     });
 
     calls('boundary.fs.readDirectory', function() {
@@ -41,15 +39,16 @@ describe('run', function() {
     boundary.argv = [directory];
     boundary.stdout = through2();
 
-    var hash = crypto.createHash('sha512');
-    hash.update(buffer);
-    hash = hash.digest('hex');
     return Promise
       .resolve(lib.run(boundary))
       .then(function() {
         return lib.pumpAndConcat(boundary, [boundary.stdout]);
       })
       .then(function(output) {
+        var hash = crypto.createHash('sha512');
+        hash.update(buffer);
+        hash = hash.digest('hex');
+
         expect(output.toString('utf8'))
           .to.equal(hash + ' /' + filename + '\n');
       });

@@ -44,20 +44,18 @@ describe('createHashStream', function() {
     });
 
     var buffer = new Buffer(id('buffer'));
-
-    var hash = crypto.createHash(realAlgorithm);
-    hash.update(buffer);
-    hash = hash.digest();
-
     var stream = through2();
     stream.end(buffer);
-
     return Promise
       .resolve(lib.pumpAndConcat(boundary, [
         stream,
         lib.createHashStream(boundary, algorithm),
       ]))
       .then(function(result) {
+        var hash = crypto.createHash(realAlgorithm);
+        hash.update(buffer);
+        hash = hash.digest();
+
         expect(result.toString('hex')).to.equal(hash.toString('hex'));
       });
   });
