@@ -7,6 +7,7 @@
     "stub": true,
     "mock": true,
     "id": true,
+    "calls": true,
     "describe": true,
     "it": true,
     "before": true,

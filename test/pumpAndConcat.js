@@ -4,58 +4,46 @@ var through2 = require('through2');
 var lib = require('..');
 
 describe('pumpAndConcat', function() {
+  afterEach(calls.run);
+
   it('rejects if pump results in an error', function() {
-    return Promise
-      .bind({
-        boundary: new lib.Boundary(),
-        error: id('error'),
-      })
-      .then(function setup() {
-        var self = this;
+    var boundary = new lib.Boundary();
+    var error = id('error');
 
-        // Fake contract A.
-        stub(this.boundary, 'pump', function(_, __, reject) {
-          setTimeout(function() {
-            reject(self.error);
-          });
-        });
-      })
-      .then(function exerciseAndVerify() {
-        var promise = lib.pumpAndConcat(this.boundary, []);
-
-        // Check collaboration A.
-        return expect(promise).to.eventually.be.rejectedWith(this.error);
+    stub(boundary, 'pump', function(_, __, reject) {
+      setTimeout(function() {
+        reject(error);
       });
+    });
+
+    var promise = lib.pumpAndConcat(boundary, []);
+    return expect(promise).to.eventually.be.rejectedWith(error);
   });
+
   it('pumps streams and resolves with a concatenated buffer', function() {
-    return Promise
-      .bind({
-        boundary: new lib.Boundary(),
-        buffer: new Buffer(id('buffer'), 'utf8'),
-        streams: id('streams'),
-      })
-      .then(function setup() {
-        var self = this;
+    var boundary = new lib.Boundary();
+    var buffer = new Buffer(id('buffer'), 'utf8');
+    var streams = id('streams');
 
-        // Fake contract A.
-        var pump = this.boundary.pump;
-        this.pumpSpy = stub(this.boundary, 'pump', function(streams, _, __) {
-          self.actualStreams = streams;
+    calls('boundary.pump once with the streams', function() {
+      var pump = boundary.pump;
+      this.pumpSpy = stub(boundary, 'pump', function(streams, _, __) {
+        this.actualStreams = streams;
 
-          var stream = through2();
-          stream.end(self.buffer);
-          pump([stream], _, __);
-        });
-      })
-      .then(function exercise() {
-        return lib.pumpAndConcat(this.boundary, this.streams);
-      })
-      .then(function verify(result) {
-        expect(result.toString('hex')).to.equal(this.buffer.toString('hex'));
+        var stream = through2();
+        stream.end(buffer);
+        pump([stream], _, __);
+      }.bind(this));
+    }, function() {
+      expect(this.pumpSpy).to.have.been.calledOnce;
+      expect(this.actualStreams).to.equal(streams);
+    });
 
-        // Check collaboration A.
-        expect(this.pumpSpy).to.have.been.calledOnce;
-        expect(this.actualStreams).to.equal(this.streams);
-      });
+    var promise = lib.pumpAndConcat(boundary, streams);
+    return promise.then(function(result) {
+      var expectedBuffer = buffer.toString('hex');
+      var actualBuffer = result.toString('hex');
+      expect(actualBuffer).to.equal(expectedBuffer);
+    });
   });
 });

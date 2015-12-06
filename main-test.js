@@ -21,3 +21,41 @@ global.mock = sinon.mock;
 global.id = function (name) {
   return 'id[' + name + ',' + Math.random() + ']';
 };
+
+function calls(name, contract, collaboration) {
+  if (collaboration === undefined) {
+    collaboration = contract;
+    contract = _.noop;
+  }
+  var context = {};
+  var contractName = id(name);
+  calls.stubContract(contractName, contract.bind(context));
+  calls.addCollaborationCheck(contractName, collaboration.bind(context));
+}
+
+_.assign(calls, {
+  _pending: [],
+  _collaborations: [],
+  stubContract: function(names, fn) {
+    this._pending = this._pending.concat(names);
+    fn();
+  },
+  addCollaborationCheck: function(names, fn) {
+    this._collaborations.push(function() {
+      this._pending = _.difference(this._pending, [].concat(names));
+      return fn();
+    }.bind(this));
+  },
+  run: function() {
+    var self = this;
+    return Promise
+      .each(self._collaborations, function(collaboration) {
+        return collaboration();
+      })
+      .then(function() {
+        expect(self._pending).to.eql([]);
+      });
+  },
+});
+_.bindAll(calls);
+global.calls = calls;

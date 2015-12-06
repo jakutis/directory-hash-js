@@ -5,64 +5,60 @@ var crypto = require('crypto');
 var through2 = require('through2');
 
 describe('createHashStream', function() {
+  afterEach(calls.run);
+
   it('re-throws the error from boundary.createHash', function() {
-    return Promise
-      .bind({
-        boundary: new lib.Boundary(),
-        error: id('error'),
-      })
-      .then(function setup() {
-        var self = this;
+    var boundary = new lib.Boundary();
+    var error = id('error');
+    var algorithm = id('algorithm');
 
-        // Fake contract A.
-        stub(this.boundary, 'createHash', function() {
-          throw self.error;
-        });
-      })
-      .then(function exerciseAndVerify() {
-        var self = this;
-        expect(function() {
-          lib.createHashStream(self.boundary);
-        }).to.throw(this.error);
+    calls('boundary.createHash with the algorithm name', function() {
+      this.createHashSpy = stub(boundary, 'createHash', function() {
+        throw error;
       });
+    }, function() {
+      expect(this.createHashSpy)
+        .to.have.been.calledWithExactly(algorithm);
+    });
+
+    expect(function() {
+      lib.createHashStream(boundary, algorithm);
+    }).to.throw(error);
+    return Promise.resolve();
   });
-  it('returns a stream that transforms using boundary.createHash', function() {
+
+  it('returns a stream that hashes', function() {
+    var boundary = new lib.Boundary();
+    var realAlgorithm = 'sha512';
+    var algorithm = id('algorithm');
+
+    calls('boundary.createHash with the algorithm name', function() {
+      var createHash = boundary.createHash;
+      this.createHashSpy = stub(boundary, 'createHash', function() {
+        return createHash.call(boundary, realAlgorithm);
+      });
+    }, function() {
+      expect(this.createHashSpy).to.have.been.calledOnce;
+      expect(this.createHashSpy)
+        .to.have.been.calledWithExactly(algorithm);
+    });
+
+    var buffer = new Buffer(id('buffer'));
+
+    var hash = crypto.createHash(realAlgorithm);
+    hash.update(buffer);
+    hash = hash.digest();
+
+    var stream = through2();
+    stream.end(buffer);
+
     return Promise
-      .bind({
-        buffer: new Buffer(id('buffer')),
-        realAlgorithm: 'sha512',
-        algorithm: id('algorithm'),
-        boundary: new lib.Boundary(),
-        stream: through2(),
-      })
-      .then(function setup() {
-        var self = this;
-
-        this.stream.end(this.buffer);
-
-        var hash = crypto.createHash(this.realAlgorithm);
-        hash.update(this.buffer);
-        this.hash = hash.digest();
-
-        var createHash = this.boundary.createHash;
-        this.createHashSpy = stub(this.boundary, 'createHash', function() {
-          // Execute contract A.
-          return createHash.call(this, self.realAlgorithm);
-        });
-      })
-      .then(function exercise() {
-        this.hashStream = lib.createHashStream(this.boundary, this.algorithm);
-      })
-      .then(function verify(result) {
-        return lib.pumpAndConcat(this.boundary, [this.stream, this.hashStream]);
-      })
-      .then(function verify(result) {
-        expect(result.toString('hex')).to.equal(this.hash.toString('hex'));
-
-        // Check collaboration A.
-        expect(this.createHashSpy).to.have.been.calledOnce;
-        expect(this.createHashSpy)
-          .to.have.been.calledWithExactly(this.algorithm);
+      .resolve(lib.pumpAndConcat(boundary, [
+        stream,
+        lib.createHashStream(boundary, algorithm),
+      ]))
+      .then(function(result) {
+        expect(result.toString('hex')).to.equal(hash.toString('hex'));
       });
   });
 });
