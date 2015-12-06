@@ -3,6 +3,10 @@
 var through2 = require('through2');
 var lib = require('..');
 
+function bufferToHexString(buffer) {
+  return buffer.toString('hex');
+}
+
 describe('pumpAndConcat', function() {
   afterEach(calls.run);
 
@@ -39,11 +43,7 @@ describe('pumpAndConcat', function() {
       expect(this.actualStreams).to.equal(streams);
     });
 
-    return Promise
-      .resolve(lib.pumpAndConcat(boundary, streams))
-      .then(function(result) {
-        expect(result.toString('hex'))
-          .to.equal(buffer.toString('hex'));
-      });
+    return expect(lib.pumpAndConcat(boundary, streams).then(bufferToHexString))
+      .to.eventually.equal(buffer.toString('hex'));
   });
 });
