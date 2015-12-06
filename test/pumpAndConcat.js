@@ -39,10 +39,11 @@ describe('pumpAndConcat', function() {
       expect(this.actualStreams).to.equal(streams);
     });
 
-    var promise = lib.pumpAndConcat(boundary, streams);
-    return promise.then(function(result) {
-      expect(result.toString('hex'))
-        .to.equal(buffer.toString('hex'));
-    });
+    return Promise
+      .resolve(lib.pumpAndConcat(boundary, streams))
+      .then(function(result) {
+        expect(result.toString('hex'))
+          .to.equal(buffer.toString('hex'));
+      });
   });
 });
