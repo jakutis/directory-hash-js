@@ -13,7 +13,7 @@ describe('run', function() {
     var buffer = new Buffer(id('buffer'), 'utf8');
     var filename = id('filename');
 
-    calls('calling boundary.fs.createReadStream', function() {
+    calls('boundary.fs.createReadStream', function() {
       var fs = boundary.fs;
       this.createReadStreamSpy = stub(fs, 'createReadStream', function() {
         var stream = through2();
@@ -28,7 +28,7 @@ describe('run', function() {
         .to.have.been.calledWithExactly(path);
     });
 
-    calls('calling boundary.fs.readDirectory', function() {
+    calls('boundary.fs.readDirectory', function() {
       this.readDirectorySpy = stub(boundary.fs, 'readDirectory', function() {
         return Promise.resolve(['.', '..', filename]);
       });
