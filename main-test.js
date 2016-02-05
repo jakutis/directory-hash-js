@@ -53,6 +53,7 @@ _.assign(calls, {
         return collaboration();
       })
       .then(function() {
+        self._collaborations = [];
         expect(self._pending).to.eql([]);
       });
   },
